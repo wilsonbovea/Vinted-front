@@ -53,7 +53,7 @@ header {
   display: flex;
   align-items: center;
   gap: 70px;
-  padding: 10px 0;
+  padding: 10px 0px;
   height: 75px;
 }
 .button-disconnect button {
@@ -97,8 +97,8 @@ header {
   background-color: #2db0ba;
   height: 10px;
 }
-.barre-recherche > input {
-  width: 100%;
+.barre-inp {
+  /* width: 100%; */
 
   min-height: 34px;
   border: none;
@@ -106,6 +106,7 @@ header {
 
   padding: 0px 15px;
   border-radius: 5px;
+  flex-shrink: 0;
 }
 .buttons-connection {
   display: flex;

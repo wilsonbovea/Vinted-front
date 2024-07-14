@@ -23,13 +23,14 @@ const Header = ({
       </div>
       <div className="barre-recherche">
         <input
+          className="barre-inp"
           type="text"
           placeholder="🔍 Recherche des articles"
           value={search}
           onChange={(event) => {
             return setSearch(event.target.value);
           }}
-        ></input>
+        />
         <div> {offerId === false && <div className="filter-barre"></div>}</div>
       </div>
       <div

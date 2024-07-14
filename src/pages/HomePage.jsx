@@ -10,7 +10,7 @@ const HomePage = ({ dataOrg, setOfferId }) => {
           const avatar = offer.owner.account.avatar;
 
           return (
-            <div key={offer._id} className="all-offer">
+            <div key={offer._id} className="all-offer container">
               <div className="avatar">
                 <img
                   src={
