@@ -4,10 +4,14 @@ const Hero = () => {
       <div className="hero-image">
         <img src="/hero-img.jpg" alt="femme souriante" />
       </div>
-      <div className="hero-start-sell ">
-        <div className="div-start">
-          <p>prêts à faire du tri dans vos placards ?</p>
-          <button className="button-start">Commencer à vendre</button>
+      <div className="start">
+        <div className="container">
+          <div className="hero-start-sell">
+            <div className="div-start">
+              <p>prêts à faire du tri dans vos placards ?</p>
+              <button className="button-start">Commencer à vendre</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
