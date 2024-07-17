@@ -94,9 +94,51 @@ header {
   padding: 10px 0px;
 }
 .filter-barre {
-  background-color: #2db0ba;
-  height: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
+.trier-par {
+  display: flex;
+  align-items: center;
+  width: 320px;
+  justify-content: space-between;
+}
+.button-trier {
+  background-color: #2db0ba;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  width: 50px;
+  height: 25px;
+  overflow: hidden;
+  display: flex;
+  border: #2db0ba 1px solid;
+}
+button {
+  background-color: transparent;
+  border: none;
+}
+.desc {
+  background-color: white;
+  border: none;
+  padding-left: 5px;
+}
+.asc {
+  background-color: white;
+  border: none;
+  padding-right: 5px;
+}
+.filter-barre > p {
+  width: 60px;
+  padding: 3px;
+  border-radius: 5px;
+  background-color: #2db0ba;
+  color: white;
+  text-align: center;
+}
+
 .barre-inp {
   /* width: 100%; */
 

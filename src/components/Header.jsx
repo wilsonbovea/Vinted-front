@@ -1,19 +1,23 @@
 import { NavLink } from "react-router-dom";
 import Cookies from "js-cookie";
-import axios from "axios";
+import { useState } from "react";
+import Slider from "./Slider";
 
 const Header = ({
   offerId,
   setOfferId,
   setConnected,
   connected,
-  userName,
+  setChecked,
   setUserToken,
   search,
   setSearch,
   cookie,
   setCookie,
+  counter,
+  setCounter,
 }) => {
+  const [switch1, setSwitch1] = useState(false);
   return (
     <header
       className={offerId === 0 ? "container headerAndFilter" : "container"}
@@ -39,7 +43,34 @@ const Header = ({
           }}
         />
 
-        <div className={offerId === 0 ? "filter-barre" : "hidden-button"}></div>
+        <div className={offerId === 0 ? "filter-barre" : "hidden-button"}>
+          <div className="trier-par">
+            <p>Trier par prix :</p>
+            <div className="button-trier">
+              <button
+                className={!switch1 && "asc"}
+                onClick={() => {
+                  setSwitch1(false);
+                  setChecked("price-asc");
+                }}
+              >
+                ⬆️
+              </button>
+              <button
+                className={switch1 && "desc"}
+                onClick={() => {
+                  setSwitch1(true);
+                  setChecked("price-desc");
+                }}
+              >
+                ⬇️
+              </button>
+            </div>
+          </div>
+          <p>{!counter[1] ? "PrixMin" : counter[0] + "€"}</p>
+          <Slider counter={counter} setCounter={setCounter} />
+          <p>{!counter[1] ? "PrixMax" : counter[1] + "€"}</p>
+        </div>
       </div>
       <div
         className={

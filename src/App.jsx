@@ -18,6 +18,9 @@ function App() {
   const [userName, setUserName] = useState("");
   const [search, setSearch] = useState("");
   const [cookie, setCookie] = useState("");
+  const [counter, setCounter] = useState([0, 1000]);
+  const [checked, setChecked] = useState("");
+
   const getCookie = () => {
     const token = Cookies.get("userToken");
 
@@ -28,7 +31,14 @@ function App() {
     const fetchData = async () => {
       try {
         const { data } = await axios.get(
-          "https://lereacteur-vinted-api.herokuapp.com/offers?title=" + search
+          "https://lereacteur-vinted-api.herokuapp.com/offers?title=" +
+            search +
+            "&priceMin=" +
+            counter[0] +
+            "&priceMax=" +
+            counter[1] +
+            "&sort=" +
+            checked
         );
 
         setDataOrg(data.offers);
@@ -40,7 +50,7 @@ function App() {
     };
     getCookie();
     fetchData();
-  }, [search]);
+  }, [search, counter[0], counter[1], checked]);
 
   return isLoading ? (
     <div className="loading loader"></div>
@@ -58,6 +68,9 @@ function App() {
         setSearch={setSearch}
         cookie={cookie}
         setCookie={setCookie}
+        counter={counter}
+        setCounter={setCounter}
+        setChecked={setChecked}
       />
       <Routes>
         <Route
