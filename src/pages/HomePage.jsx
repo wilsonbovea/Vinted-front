@@ -27,7 +27,7 @@ const HomePage = ({ dataOrg, setOfferId }) => {
                 <NavLink
                   className="nav-offer"
                   onClick={() => {
-                    return setOfferId(true);
+                    return setOfferId(1);
                   }}
                   to={"/offers/" + offer._id}
                 >

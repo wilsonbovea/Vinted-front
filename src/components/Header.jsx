@@ -11,13 +11,20 @@ const Header = ({
   setUserToken,
   search,
   setSearch,
+  cookie,
+  setCookie,
 }) => {
   return (
     <header
-      className={offerId === false ? "container headerAndFilter" : "container"}
+      className={offerId === 0 ? "container headerAndFilter" : "container"}
     >
       <div className="logo-vinted">
-        <NavLink to="/" onClick={() => setOfferId(false)}>
+        <NavLink
+          to="/"
+          onClick={() => {
+            setOfferId(0);
+          }}
+        >
           <img className="img-logo" src="/Vinted_logo.png" alt="logo vinted" />
         </NavLink>
       </div>
@@ -31,28 +38,41 @@ const Header = ({
             return setSearch(event.target.value);
           }}
         />
-        <div> {offerId === false && <div className="filter-barre"></div>}</div>
+
+        <div className={offerId === 0 ? "filter-barre" : "hidden-button"}></div>
       </div>
       <div
-        className={connected === false ? "buttons-connection" : "hidden-button"}
+        className={
+          connected === false && cookie === undefined
+            ? "buttons-connection"
+            : "hidden-button"
+        }
       >
         <NavLink to="/signup">
-          <button onClick={() => setOfferId(true)}>S'inscrire</button>
+          <button onClick={() => setOfferId(1)}>S'inscrire</button>
         </NavLink>
         <NavLink to="/login">
-          <button onClick={() => setOfferId(true)}>Se connecter</button>
+          <button onClick={() => setOfferId(1)}>Se connecter</button>
         </NavLink>
       </div>
       <div
-        className={connected === true ? "button-disconnect" : "hidden-button"}
+        className={
+          connected === true || cookie !== undefined
+            ? "button-disconnect"
+            : "hidden-button"
+        }
       >
         <button
+          type="submit"
           onClick={() => {
-            Cookies.remove(userName + "Token");
-            // Mise à jour du state pour qu'il reflète tout de suite le changement
-            setUserToken("");
+            Cookies.remove("userToken");
 
+            setUserToken("");
+            setCookie("");
             setConnected(false);
+
+            window.location.reload();
+            setOfferId(0);
           }}
         >
           Se déconnecter

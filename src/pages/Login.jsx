@@ -9,7 +9,7 @@ const Login = ({ setConnected, setUserToken, setUserName, setOfferId }) => {
   const [userPassword, setUserPassword] = useState("");
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  setOfferId(true);
+
   const onSubmit = async (event) => {
     event.preventDefault();
 
@@ -30,11 +30,11 @@ const Login = ({ setConnected, setUserToken, setUserName, setOfferId }) => {
 
       setUserToken(data.token);
       setUserName(data.account.username);
-      console.log(data);
+
       setConnected(true);
 
-      Cookies.set(data.account.username + "Token", data.token);
-      setOfferId(false);
+      Cookies.set("userToken", data.token);
+      setOfferId(0);
       navigate("/");
     } catch (error) {
       console.log("Offer page - catch >", error.response);

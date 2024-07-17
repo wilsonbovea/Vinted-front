@@ -7,47 +7,40 @@ import OfferPage from "./pages/OfferPage";
 import axios from "axios";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+import Cookies from "js-cookie";
 
 function App() {
   const [dataOrg, setDataOrg] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const [offerId, setOfferId] = useState(true);
+  const [offerId, setOfferId] = useState(0);
   const [connected, setConnected] = useState(false);
   const [userToken, setUserToken] = useState("");
   const [userName, setUserName] = useState("");
   const [search, setSearch] = useState("");
-  console.log("app log >>>>>>", dataOrg);
-  const tabData = [];
-  for (let i = 0; i < dataOrg.length; i++) {
-    if (
-      dataOrg[i].product_description.includes(search) ||
-      dataOrg[i].product_name.includes(search) ||
-      dataOrg[i].product_details[0].MARQUE.includes(search.toLocaleUpperCase())
-    ) {
-      if (tabData.length < 20) {
-        tabData.push(dataOrg[i]);
-      } else {
-        break;
-      }
-    }
-  }
+  const [cookie, setCookie] = useState("");
+  const getCookie = () => {
+    const token = Cookies.get("userToken");
+
+    setCookie(token);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const { data } = await axios.get(
-          "https://lereacteur-vinted-api.herokuapp.com/offers"
+          "https://lereacteur-vinted-api.herokuapp.com/offers?title=" + search
         );
 
         setDataOrg(data.offers);
       } catch (error) {
         console.log("catch >>>>", error.message);
       }
-      setIsLoading(false);
-      setOfferId(false);
-    };
 
+      setIsLoading(false);
+    };
+    getCookie();
     fetchData();
-  }, []);
+  }, [search]);
 
   return isLoading ? (
     <div className="loading loader"></div>
@@ -63,11 +56,13 @@ function App() {
         userName={userName}
         search={search}
         setSearch={setSearch}
+        cookie={cookie}
+        setCookie={setCookie}
       />
       <Routes>
         <Route
           path="/"
-          element={<HomePage dataOrg={tabData} setOfferId={setOfferId} />}
+          element={<HomePage dataOrg={dataOrg} setOfferId={setOfferId} />}
         />
         <Route
           path="/offers/:id"

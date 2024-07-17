@@ -4,7 +4,7 @@ import axios from "axios";
 import { nanoid } from "nanoid";
 const OfferPage = ({ setOfferId, offerId }) => {
   const { id } = useParams();
-  setOfferId(true);
+
   const [offer, setOfferInfos] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
@@ -19,7 +19,7 @@ const OfferPage = ({ setOfferId, offerId }) => {
       } catch (error) {
         console.log("Offer page - catch >", error.response);
       }
-
+      setOfferId(1);
       setIsLoading(false);
     };
 
@@ -59,8 +59,9 @@ const OfferPage = ({ setOfferId, offerId }) => {
             <div className="user">
               <img
                 src={
-                  offer.owner.account.avatar && offer.owner.account.avatar.url
-                    ? offer.owner.account.avatar.url
+                  offer.owner.account.avatar &&
+                  offer.owner.account.avatar.secure_url
+                    ? offer.owner.account.avatar.secure_url
                     : "/user-img.png"
                 }
                 alt=""

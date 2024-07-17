@@ -10,7 +10,7 @@ const Signup = ({
   setOfferId,
 }) => {
   const navigate = useNavigate();
-  setOfferId(true);
+
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
 
@@ -39,9 +39,9 @@ const Signup = ({
 
       setUserToken(data.token);
       console.log(data);
-      Cookies.set(userName + "Token", data.token);
+      Cookies.set("userToken", data.token);
       setConnected(true);
-      setOfferId(false);
+      setOfferId(0);
       navigate("/");
     } catch (error) {
       console.log("Offer page - catch >", error.response);
