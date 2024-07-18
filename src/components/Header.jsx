@@ -22,16 +22,23 @@ const Header = ({
     <header
       className={offerId === 0 ? "container headerAndFilter" : "container"}
     >
-      <div className="logo-vinted">
-        <NavLink
-          to="/"
-          onClick={() => {
-            setOfferId(0);
-          }}
-        >
-          <img className="img-logo" src="/Vinted_logo.png" alt="logo vinted" />
-        </NavLink>
+      <div className="vinted">
+        <div className="logo-vinted">
+          <NavLink
+            to="/"
+            onClick={() => {
+              setOfferId(0);
+            }}
+          >
+            <img
+              className="img-logo"
+              src="/Vinted_logo.png"
+              alt="logo vinted"
+            />
+          </NavLink>
+        </div>
       </div>
+
       <div className="barre-recherche">
         <input
           className="barre-inp"
@@ -67,15 +74,17 @@ const Header = ({
               </button>
             </div>
           </div>
-          <p>{!counter[1] ? "PrixMin" : counter[0] + "€"}</p>
-          <Slider counter={counter} setCounter={setCounter} />
-          <p>{!counter[1] ? "PrixMax" : counter[1] + "€"}</p>
+          <div className="slider-div">
+            <p>{!counter[1] ? "PrixMin" : counter[0] + "€"}</p>
+            <Slider counter={counter} setCounter={setCounter} />
+            <p>{!counter[1] ? "PrixMax" : counter[1] + "€"}</p>
+          </div>
         </div>
       </div>
       <div
         className={
           connected === false && cookie === undefined
-            ? "buttons-connection"
+            ? "buttons-connection hide-header-button"
             : "hidden-button"
         }
       >
@@ -89,7 +98,7 @@ const Header = ({
       <div
         className={
           connected === true || cookie !== undefined
-            ? "button-disconnect"
+            ? "button-disconnect hide-header-button"
             : "hidden-button"
         }
       >
@@ -109,7 +118,10 @@ const Header = ({
           Se déconnecter
         </button>
       </div>
-      <button className="button-sell"> Vends tes articles</button>
+      <button className="button-sell hide-header-button">
+        {" "}
+        Vends tes articles
+      </button>
     </header>
   );
 };

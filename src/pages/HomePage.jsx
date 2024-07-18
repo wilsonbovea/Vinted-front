@@ -6,12 +6,12 @@ const HomePage = ({ dataOrg, setOfferId }) => {
     <>
       <Hero />
       <main className="container">
-        <section className="container section-offers">
+        <section className="section-offers">
           {dataOrg.map((offer, index) => {
             const avatar = offer.owner.account.avatar;
 
             return (
-              <div key={offer._id} className="all-offer container">
+              <div key={offer._id} className="all-offer">
                 <div className="avatar">
                   <img
                     src={
