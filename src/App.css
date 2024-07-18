@@ -49,8 +49,14 @@ button:hover {
   }
 }
 /* HEADER STYLE */
-
-header {
+.header-not-filter,
+.headerAndFilter {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: white;
+}
+.header-not-filter {
   display: flex;
   align-items: center;
   gap: 5.7%;
@@ -281,7 +287,7 @@ button {
 /* PAGE OFFER */
 .section-page-offer {
   background-color: #eaedee;
-  height: calc(100vh - 75px);
+  height: 700px;
   padding: 30px;
 }
 .page-offer {
@@ -361,7 +367,7 @@ h1 {
 
   gap: 30px;
   justify-content: center;
-  margin: 100px auto;
+  margin: 50px auto;
 }
 .sign-up h1 {
   text-align: center;
@@ -406,10 +412,12 @@ h1 {
 }
 @media (max-width: 990px) {
   .headerAndFilter,
-  .container {
-    margin: 0px 20px;
+  .container,
+  .header-not-filter {
+    padding: 10px 20px;
   }
-  .headerAndFilter {
+  .headerAndFilter,
+  .header-not-filter {
     gap: 3%;
   }
 }
@@ -421,7 +429,9 @@ h1 {
     width: 100%;
     padding: 5px 0px;
   }
-  .headerAndFilter {
+  .headerAndFilter,
+  .header-not-filter {
+    display: flex;
     flex-direction: column;
     justify-content: flex-start;
     height: 150px;
@@ -475,5 +485,40 @@ h1 {
     padding: 12px;
     font-size: 16px;
     border: 1px solid #2db0ba;
+  }
+  .section-page-offer {
+    height: 100%;
+  }
+  .page-offer {
+    flex-direction: column;
+  }
+
+  .offer-page-img,
+  .details {
+    width: 100%;
+  }
+  .modalConnection {
+    display: flex;
+    gap: 40px;
+    position: absolute;
+    height: 840px;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    z-index: 4;
+  }
+  .modal {
+    display: initial;
+  }
+  .buttons-connection {
+    width: 100%;
+
+    flex-shrink: 1;
+  }
+  .buttons-connection button,
+  .button-sell {
+    flex-shrink: 1;
+    width: 185px;
   }
 }

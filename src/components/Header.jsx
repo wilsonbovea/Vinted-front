@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useState } from "react";
 import Slider from "./Slider";
+import ModalConnection from "./ModalConnection";
 
 const Header = ({
   offerId,
@@ -18,9 +19,14 @@ const Header = ({
   setCounter,
 }) => {
   const [switch1, setSwitch1] = useState(false);
+  const [display, setDisplay] = useState(0);
   return (
     <header
-      className={offerId === 0 ? "container headerAndFilter" : "container"}
+      className={
+        offerId === 0
+          ? "container headerAndFilter"
+          : "header-not-filter container"
+      }
     >
       <div className="vinted">
         <div className="logo-vinted">
@@ -37,7 +43,23 @@ const Header = ({
             />
           </NavLink>
         </div>
+        <button
+          className="hidden-button modal"
+          onClick={() => {
+            setDisplay(1);
+          }}
+        >
+          modal
+        </button>
       </div>
+      <ModalConnection
+        setOfferId={setOfferId}
+        setConnected={setConnected}
+        connected={connected}
+        cookie={cookie}
+        setCookie={setCookie}
+        display={display}
+      />
 
       <div className="barre-recherche">
         <input
@@ -119,7 +141,6 @@ const Header = ({
         </button>
       </div>
       <button className="button-sell hide-header-button">
-        {" "}
         Vends tes articles
       </button>
     </header>
