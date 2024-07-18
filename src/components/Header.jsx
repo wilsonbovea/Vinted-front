@@ -43,23 +43,23 @@ const Header = ({
             />
           </NavLink>
         </div>
-        <button
+        {/* <button
           className="hidden-button modal"
           onClick={() => {
             setDisplay(1);
           }}
         >
           modal
-        </button>
+        </button> */}
       </div>
-      <ModalConnection
+      {/* <ModalConnection
         setOfferId={setOfferId}
         setConnected={setConnected}
         connected={connected}
         cookie={cookie}
         setCookie={setCookie}
         display={display}
-      />
+      /> */}
 
       <div className="barre-recherche">
         <input
