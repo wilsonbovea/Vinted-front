@@ -49,8 +49,7 @@ button:hover {
   }
 }
 /* HEADER STYLE */
-.header-not-filter,
-.headerAndFilter {
+header {
   position: sticky;
   top: 0;
   z-index: 1;
