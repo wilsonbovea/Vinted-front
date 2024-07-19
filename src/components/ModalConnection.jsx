@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import Cookies from "js-cookie";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faX } from "@fortawesome/free-solid-svg-icons";
 const ModalConnection = ({
   setOfferId,
   setConnected,
@@ -20,7 +21,7 @@ const ModalConnection = ({
             setDisplay(0);
           }}
         >
-          X
+          <FontAwesomeIcon icon={faX} />
         </button>
         <div
           className={

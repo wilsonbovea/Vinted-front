@@ -2,6 +2,11 @@ import { NavLink } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useState } from "react";
 import Slider from "./Slider";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 const Header = ({
   offerId,
@@ -50,7 +55,7 @@ const Header = ({
               setDisplay(1);
             }}
           >
-            modal
+            <FontAwesomeIcon icon={faBars} />
           </button>
         </div>
 
@@ -67,7 +72,7 @@ const Header = ({
 
           <div className={offerId === 0 ? "filter-barre" : "hidden-button"}>
             <div className="trier-par">
-              <p>Trier par prix :</p>
+              <p>Trier par prix:</p>
               <div className="button-trier">
                 <button
                   className={!switch1 ? "asc" : ""}
@@ -76,7 +81,7 @@ const Header = ({
                     setChecked("price-asc");
                   }}
                 >
-                  ⬆️
+                  <FontAwesomeIcon icon={faArrowUp} />
                 </button>
                 <button
                   className={switch1 ? "desc" : ""}
@@ -85,7 +90,7 @@ const Header = ({
                     setChecked("price-desc");
                   }}
                 >
-                  ⬇️
+                  <FontAwesomeIcon icon={faArrowDown} />
                 </button>
               </div>
             </div>

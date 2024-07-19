@@ -121,6 +121,8 @@ header {
   overflow: hidden;
   display: flex;
   border: #2db0ba 1px solid;
+  flex-shrink: 0;
+  justify-content: center;
 }
 button {
   background-color: transparent;
@@ -129,12 +131,12 @@ button {
 .desc {
   background-color: white;
   border: none;
-  padding-left: 5px;
+  padding-right: 10px;
 }
 .asc {
   background-color: white;
   border: none;
-  padding-right: 5px;
+  padding-right: 10px;
 }
 .slider-div {
   width: 100%;
@@ -152,8 +154,6 @@ button {
 }
 
 .barre-inp {
-  /* width: 100%; */
-
   min-height: 34px;
   border: none;
   background-color: #f5f6f7;
@@ -510,7 +510,6 @@ h1 {
   }
   .modal {
     display: initial;
-    background-color: #2db0ba;
   }
   .buttons-connection {
     width: 100%;
