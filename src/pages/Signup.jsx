@@ -58,6 +58,7 @@ const Signup = ({
             <input
               type="text"
               id="userName"
+              name="userName"
               placeholder="Nom d'utilisateur"
               value={userName}
               onChange={(event) => {
@@ -69,6 +70,7 @@ const Signup = ({
             <input
               type="text"
               id="userEmail"
+              name="userEmail"
               required
               placeholder="Email"
               value={userEmail}
@@ -81,6 +83,7 @@ const Signup = ({
             <input
               type="password"
               id="userPassword"
+              name="userPassword"
               placeholder="Mot de passe"
               value={userPassword}
               onChange={(event) => {
@@ -95,7 +98,7 @@ const Signup = ({
             <input
               className="inp-check"
               type="checkbox"
-              name=""
+              name="check"
               id="check"
               checked={newsletter}
               onChange={(event) => {

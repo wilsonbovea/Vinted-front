@@ -51,6 +51,7 @@ const Login = ({ setConnected, setUserToken, setUserName, setOfferId }) => {
             <input
               type="text"
               id="userEmail"
+              name="userEmail"
               required
               placeholder="Adresse Email"
               value={userEmail}
@@ -63,6 +64,7 @@ const Login = ({ setConnected, setUserToken, setUserName, setOfferId }) => {
             <input
               type="password"
               id="userPassword"
+              name="userPassword"
               placeholder="Mot de passe"
               value={userPassword}
               onChange={(event) => {

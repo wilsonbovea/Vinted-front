@@ -2,7 +2,6 @@ import { NavLink } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useState } from "react";
 import Slider from "./Slider";
-import ModalConnection from "./ModalConnection";
 
 const Header = ({
   offerId,
@@ -17,9 +16,10 @@ const Header = ({
   setCookie,
   counter,
   setCounter,
+  setDisplay,
 }) => {
   const [switch1, setSwitch1] = useState(false);
-  const [display, setDisplay] = useState(0);
+
   return (
     <header
       className={
@@ -43,23 +43,15 @@ const Header = ({
             />
           </NavLink>
         </div>
-        {/* <button
+        <button
           className="hidden-button modal"
           onClick={() => {
             setDisplay(1);
           }}
         >
           modal
-        </button> */}
+        </button>
       </div>
-      {/* <ModalConnection
-        setOfferId={setOfferId}
-        setConnected={setConnected}
-        connected={connected}
-        cookie={cookie}
-        setCookie={setCookie}
-        display={display}
-      /> */}
 
       <div className="barre-recherche">
         <input
@@ -77,7 +69,7 @@ const Header = ({
             <p>Trier par prix :</p>
             <div className="button-trier">
               <button
-                className={!switch1 && "asc"}
+                className={!switch1 ? "asc" : ""}
                 onClick={() => {
                   setSwitch1(false);
                   setChecked("price-asc");
@@ -86,7 +78,7 @@ const Header = ({
                 ⬆️
               </button>
               <button
-                className={switch1 && "desc"}
+                className={switch1 ? "desc" : ""}
                 onClick={() => {
                   setSwitch1(true);
                   setChecked("price-desc");
@@ -105,7 +97,7 @@ const Header = ({
       </div>
       <div
         className={
-          connected === false && cookie === undefined
+          connected === false && !cookie
             ? "buttons-connection hide-header-button"
             : "hidden-button"
         }
@@ -119,7 +111,7 @@ const Header = ({
       </div>
       <div
         className={
-          connected === true || cookie !== undefined
+          connected === true || cookie
             ? "button-disconnect hide-header-button"
             : "hidden-button"
         }

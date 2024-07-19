@@ -8,47 +8,74 @@ const ModalConnection = ({
   cookie,
   setCookie,
   display,
+  setDisplay,
+  setUserToken,
 }) => {
   return (
-    <div className={display === 0 ? "hidden-button" : "modalConnection"}>
-      <div
-        className={
-          connected === false && cookie === undefined
-            ? "buttons-connection"
-            : "hidden-button"
-        }
-      >
-        <NavLink to="/signup">
-          <button onClick={() => setOfferId(1)}>S'inscrire</button>
-        </NavLink>
-        <NavLink to="/login">
-          <button onClick={() => setOfferId(1)}>Se connecter</button>
-        </NavLink>
-      </div>
-      <div
-        className={
-          connected === true || cookie !== undefined
-            ? "button-disconnect"
-            : "hidden-button"
-        }
-      >
+    <div className={display === 0 ? "hidden-button" : "modal-root"}>
+      <div className="modalConnection">
         <button
-          type="submit"
+          className="modal-x"
           onClick={() => {
-            Cookies.remove("userToken");
-
-            setUserToken("");
-            setCookie("");
-            setConnected(false);
-
-            window.location.reload();
-            setOfferId(0);
+            setDisplay(0);
           }}
         >
-          Se déconnecter
+          X
         </button>
+        <div
+          className={
+            connected === false && cookie === undefined
+              ? "buttons-connection"
+              : "hidden-button"
+          }
+        >
+          <NavLink to="/signup">
+            <button
+              onClick={() => {
+                setOfferId(1);
+                setDisplay(0);
+              }}
+            >
+              S'inscrire
+            </button>
+          </NavLink>
+          <NavLink to="/login">
+            <button
+              onClick={() => {
+                setOfferId(1);
+                setDisplay(0);
+              }}
+            >
+              Se connecter
+            </button>
+          </NavLink>
+        </div>
+        <div
+          className={
+            connected === true || cookie !== undefined
+              ? "button-disconnect"
+              : "hidden-button"
+          }
+        >
+          <button
+            type="submit"
+            onClick={() => {
+              Cookies.remove("userToken");
+
+              setUserToken("");
+              setCookie("");
+              setConnected(false);
+
+              window.location.reload();
+              setDisplay(0);
+              setOfferId(0);
+            }}
+          >
+            Se déconnecter
+          </button>
+        </div>
+        <button className="button-sell">Vends tes articles</button>
       </div>
-      <button className="button-sell">Vends tes articles</button>
     </div>
   );
 };

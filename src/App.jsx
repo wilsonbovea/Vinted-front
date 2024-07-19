@@ -8,6 +8,7 @@ import axios from "axios";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Cookies from "js-cookie";
+import ModalConnection from "./components/ModalConnection";
 
 function App() {
   const [dataOrg, setDataOrg] = useState({});
@@ -20,7 +21,7 @@ function App() {
   const [cookie, setCookie] = useState("");
   const [counter, setCounter] = useState([0, 1000]);
   const [checked, setChecked] = useState("");
-
+  const [display, setDisplay] = useState(0);
   const getCookie = () => {
     const token = Cookies.get("userToken");
 
@@ -71,6 +72,7 @@ function App() {
         counter={counter}
         setCounter={setCounter}
         setChecked={setChecked}
+        setDisplay={setDisplay}
       />
       <Routes>
         <Route
@@ -105,6 +107,16 @@ function App() {
           }
         />
       </Routes>
+      <ModalConnection
+        setOfferId={setOfferId}
+        setConnected={setConnected}
+        connected={connected}
+        cookie={cookie}
+        setCookie={setCookie}
+        display={display}
+        setDisplay={setDisplay}
+        setUserToken={setUserToken}
+      />
     </Router>
   );
 }
