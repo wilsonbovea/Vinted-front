@@ -20,6 +20,7 @@ const Header = ({
   counter,
   setCounter,
   setDisplay,
+  getCookie,
 
   setToPublish,
 }) => {
@@ -138,7 +139,10 @@ const Header = ({
         <NavLink to={cookie ? "/publish" : "/login"}>
           <button
             className="button-sell hide-header-button"
-            onClick={() => setToPublish(true)}
+            onClick={() => {
+              setToPublish(true);
+              getCookie();
+            }}
           >
             Vends tes articles
           </button>

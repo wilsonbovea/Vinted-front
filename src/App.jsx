@@ -75,6 +75,7 @@ function App() {
         setDisplay={setDisplay}
         toPublish={toPublish}
         setToPublish={setToPublish}
+        getCookie={getCookie}
       />
       <Routes>
         <Route
@@ -98,6 +99,7 @@ function App() {
               setUserName={setUserName}
               toPublish={toPublish}
               setToPublish={setToPublish}
+              getCookie={getCookie}
             />
           }
         />
@@ -110,6 +112,7 @@ function App() {
               setUserName={setUserName}
               toPublish={toPublish}
               setToPublish={setToPublish}
+              getCookie={getCookie}
             />
           }
         />

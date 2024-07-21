@@ -9,6 +9,7 @@ const Signup = ({
   setUserName,
   toPublish,
   setToPublish,
+  getCookie,
 }) => {
   const navigate = useNavigate();
 
@@ -52,6 +53,7 @@ const Signup = ({
 
       setErrorMessage(error.response.data.message);
     }
+    getCookie();
     setIsSubmitting(false);
   };
 

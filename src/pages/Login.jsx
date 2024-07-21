@@ -8,6 +8,7 @@ const Login = ({
   setUserName,
   toPublish,
   setToPublish,
+  getCookie,
 }) => {
   const navigate = useNavigate();
 
@@ -39,6 +40,7 @@ const Login = ({
       setConnected(true);
       setToPublish(true);
       Cookies.set("userToken", data.token);
+
       if (toPublish) {
         navigate("/publish");
       } else {
@@ -48,6 +50,7 @@ const Login = ({
       console.log("Offer page - catch >", error.response);
       setErrorMessage("le mot de passe ou l'e-mail sont incorrects");
     }
+    getCookie();
     setIsSubmitting(false);
   };
 
@@ -83,7 +86,7 @@ const Login = ({
           </label>
         </div>
         <span className="error-message"> {errorMessage}</span>
-        <button className="signup-button" disabled={isSubmitting}>
+        <button className="signup-button" type="submit" disabled={isSubmitting}>
           S'inscrire
         </button>
         <NavLink to="/signup" className="to-login">
