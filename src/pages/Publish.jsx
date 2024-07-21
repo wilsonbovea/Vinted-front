@@ -206,6 +206,11 @@ const Publish = ({ cookie, getCookie }) => {
           </button>
         </div>
       </form>
+      {isSubmitting && (
+        <section className="absolute">
+          <div className="loading loader"></div>
+        </section>
+      )}
     </main>
   );
 };
