@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useState } from "react";
 import Slider from "./Slider";
@@ -9,8 +9,6 @@ import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 const Header = ({
-  offerId,
-  setOfferId,
   setConnected,
   connected,
   setChecked,
@@ -24,24 +22,20 @@ const Header = ({
   setDisplay,
 }) => {
   const [switch1, setSwitch1] = useState(false);
+  const location = useLocation();
 
   return (
     <header>
       <div
         className={
-          offerId === 0
+          location.pathname === "/"
             ? "headerAndFilter container"
             : "header-not-filter container"
         }
       >
         <div className="vinted">
           <div className="logo-vinted">
-            <NavLink
-              to="/"
-              onClick={() => {
-                setOfferId(0);
-              }}
-            >
+            <NavLink to="/">
               <img
                 className="img-logo"
                 src="/Vinted_logo.png"
@@ -49,58 +43,58 @@ const Header = ({
               />
             </NavLink>
           </div>
-          <button
-            className="hidden-button modal"
-            onClick={() => {
-              setDisplay(1);
-            }}
-          >
+          <button className="hidden-button modal" onClick={() => setDisplay(1)}>
             <FontAwesomeIcon icon={faBars} />
           </button>
         </div>
-
-        <div className="barre-recherche">
-          <input
-            className="barre-inp"
-            type="text"
-            placeholder="🔍 Recherche des articles"
-            value={search}
-            onChange={(event) => {
-              return setSearch(event.target.value);
-            }}
-          />
-
-          <div className={offerId === 0 ? "filter-barre" : "hidden-button"}>
-            <div className="trier-par">
-              <p>Trier par prix:</p>
-              <div className="button-trier">
-                <button
-                  className={!switch1 ? "asc" : ""}
-                  onClick={() => {
-                    setSwitch1(false);
-                    setChecked("price-asc");
-                  }}
-                >
-                  <FontAwesomeIcon icon={faArrowUp} />
-                </button>
-                <button
-                  className={switch1 ? "desc" : ""}
-                  onClick={() => {
-                    setSwitch1(true);
-                    setChecked("price-desc");
-                  }}
-                >
-                  <FontAwesomeIcon icon={faArrowDown} />
-                </button>
+        {location.pathname === "/login" || location.pathname === "/signup" ? (
+          <div className="barre-recherche"></div>
+        ) : (
+          <div className="barre-recherche">
+            <input
+              className="barre-inp"
+              type="text"
+              placeholder="🔍 Recherche des articles"
+              value={search}
+              onChange={(event) => {
+                return setSearch(event.target.value);
+              }}
+            />
+            {location.pathname === "/" && (
+              <div className="filter-barre">
+                <div className="trier-par">
+                  <p>Trier par prix:</p>
+                  <div className="button-trier">
+                    <button
+                      className={!switch1 ? "asc" : ""}
+                      onClick={() => {
+                        setSwitch1(false);
+                        setChecked("price-asc");
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faArrowUp} />
+                    </button>
+                    <button
+                      className={switch1 ? "desc" : ""}
+                      onClick={() => {
+                        setSwitch1(true);
+                        setChecked("price-desc");
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faArrowDown} />
+                    </button>
+                  </div>
+                </div>
+                <div className="slider-div">
+                  <p>{!counter[1] ? "PrixMin" : counter[0] + "€"}</p>
+                  <Slider counter={counter} setCounter={setCounter} />
+                  <p>{!counter[1] ? "PrixMax" : counter[1] + "€"}</p>
+                </div>
               </div>
-            </div>
-            <div className="slider-div">
-              <p>{!counter[1] ? "PrixMin" : counter[0] + "€"}</p>
-              <Slider counter={counter} setCounter={setCounter} />
-              <p>{!counter[1] ? "PrixMax" : counter[1] + "€"}</p>
-            </div>
+            )}
           </div>
-        </div>
+        )}
+
         <div
           className={
             connected === false && !cookie
@@ -109,10 +103,10 @@ const Header = ({
           }
         >
           <NavLink to="/signup">
-            <button onClick={() => setOfferId(1)}>S'inscrire</button>
+            <button>S'inscrire</button>
           </NavLink>
           <NavLink to="/login">
-            <button onClick={() => setOfferId(1)}>Se connecter</button>
+            <button>Se connecter</button>
           </NavLink>
         </div>
         <div
@@ -132,15 +126,16 @@ const Header = ({
               setConnected(false);
 
               window.location.reload();
-              setOfferId(0);
             }}
           >
             Se déconnecter
           </button>
         </div>
-        <button className="button-sell hide-header-button">
-          Vends tes articles
-        </button>
+        <NavLink to="/publish">
+          <button className="button-sell hide-header-button">
+            Vends tes articles
+          </button>
+        </NavLink>
       </div>
     </header>
   );

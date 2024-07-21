@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { nanoid } from "nanoid";
-const OfferPage = ({ setOfferId, offerId }) => {
+const OfferPage = () => {
   const { id } = useParams();
 
   const [offer, setOfferInfos] = useState({});
@@ -19,7 +19,7 @@ const OfferPage = ({ setOfferId, offerId }) => {
       } catch (error) {
         console.log("Offer page - catch >", error.response);
       }
-      setOfferId(1);
+
       setIsLoading(false);
     };
 

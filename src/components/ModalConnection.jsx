@@ -3,7 +3,6 @@ import Cookies from "js-cookie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 const ModalConnection = ({
-  setOfferId,
   setConnected,
   connected,
   cookie,
@@ -33,7 +32,6 @@ const ModalConnection = ({
           <NavLink to="/signup">
             <button
               onClick={() => {
-                setOfferId(1);
                 setDisplay(0);
               }}
             >
@@ -43,7 +41,6 @@ const ModalConnection = ({
           <NavLink to="/login">
             <button
               onClick={() => {
-                setOfferId(1);
                 setDisplay(0);
               }}
             >
@@ -69,13 +66,18 @@ const ModalConnection = ({
 
               window.location.reload();
               setDisplay(0);
-              setOfferId(0);
             }}
           >
             Se déconnecter
           </button>
         </div>
-        <button className="button-sell">Vends tes articles</button>
+        <div className="button-sell-div">
+          <NavLink to="/publish">
+            <button className="button-sell" onClick={() => setDisplay(0)}>
+              Vends tes articles
+            </button>
+          </NavLink>
+        </div>
       </div>
     </div>
   );

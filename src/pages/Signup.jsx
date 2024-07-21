@@ -2,18 +2,12 @@ import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-const Signup = ({
-  setUserToken,
-  setConnected,
-  userName,
-  setUserName,
-  setOfferId,
-}) => {
+const Signup = ({ setUserToken, setConnected, userName, setUserName }) => {
   const navigate = useNavigate();
 
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
-
+  const [errorMessage, setErrorMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [newsletter, setNewsletter] = useState(false);
 
@@ -22,8 +16,7 @@ const Signup = ({
 
     try {
       if (!userEmail || !userPassword || !userName) {
-        setErrorMessage("Veuillez remplir tous les champs");
-        return;
+        return setErrorMessage("Veuillez remplir tous les champs");
       }
       setIsSubmitting(true);
       const { data } = await axios.post(
@@ -41,10 +34,12 @@ const Signup = ({
       console.log(data);
       Cookies.set("userToken", data.token);
       setConnected(true);
-      setOfferId(0);
+
       navigate("/");
     } catch (error) {
       console.log("Offer page - catch >", error.response);
+
+      setErrorMessage(error.response.data.message);
     }
     setIsSubmitting(false);
   };
@@ -101,7 +96,7 @@ const Signup = ({
               name="check"
               id="check"
               checked={newsletter}
-              onChange={(event) => {
+              onChange={() => {
                 setNewsletter(!newsletter);
               }}
             />
@@ -113,6 +108,7 @@ const Signup = ({
             avoir au moins 18 ans.
           </span>
         </label>
+        <span className="error-message"> {errorMessage}</span>
         <button className="signup-button" disabled={isSubmitting}>
           S'inscrire
         </button>

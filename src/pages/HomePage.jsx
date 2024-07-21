@@ -1,7 +1,7 @@
 import Hero from "../components/Hero";
 import { NavLink } from "react-router-dom";
 
-const HomePage = ({ dataOrg, setOfferId }) => {
+const HomePage = ({ dataOrg }) => {
   return (
     <>
       <Hero />
@@ -24,13 +24,7 @@ const HomePage = ({ dataOrg, setOfferId }) => {
 
                   <span>{offer.owner.account.username}</span>
                 </div>
-                <NavLink
-                  className="nav-offer"
-                  onClick={() => {
-                    return setOfferId(1);
-                  }}
-                  to={"/offers/" + offer._id}
-                >
+                <NavLink className="nav-offer" to={"/offers/" + offer._id}>
                   <div className="offer-img">
                     <img src={offer.product_image.secure_url} alt="" />
                   </div>

@@ -9,17 +9,17 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Cookies from "js-cookie";
 import ModalConnection from "./components/ModalConnection";
+import Publish from "./pages/Publish";
 
 function App() {
   const [dataOrg, setDataOrg] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const [offerId, setOfferId] = useState(0);
   const [connected, setConnected] = useState(false);
   const [userToken, setUserToken] = useState("");
   const [userName, setUserName] = useState("");
   const [search, setSearch] = useState("");
   const [cookie, setCookie] = useState("");
-  const [counter, setCounter] = useState([0, 1000]);
+  const [counter, setCounter] = useState([0, 2000]);
   const [checked, setChecked] = useState("");
   const [display, setDisplay] = useState(0);
   const getCookie = () => {
@@ -58,8 +58,6 @@ function App() {
   ) : (
     <Router>
       <Header
-        offerId={offerId}
-        setOfferId={setOfferId}
         connected={connected}
         setConnected={setConnected}
         userToken={userToken}
@@ -75,14 +73,8 @@ function App() {
         setDisplay={setDisplay}
       />
       <Routes>
-        <Route
-          path="/"
-          element={<HomePage dataOrg={dataOrg} setOfferId={setOfferId} />}
-        />
-        <Route
-          path="/offers/:id"
-          element={<OfferPage setOfferId={setOfferId} offerId={offerId} />}
-        />
+        <Route path="/" element={<HomePage dataOrg={dataOrg} />} />
+        <Route path="/offers/:id" element={<OfferPage />} />
         <Route
           path="/signup"
           element={
@@ -91,7 +83,6 @@ function App() {
               setUserToken={setUserToken}
               userName={userName}
               setUserName={setUserName}
-              setOfferId={setOfferId}
             />
           }
         />
@@ -102,13 +93,12 @@ function App() {
               setConnected={setConnected}
               setUserToken={setUserToken}
               setUserName={setUserName}
-              setOfferId={setOfferId}
             />
           }
         />
+        <Route path="/publish" element={<Publish cookie={cookie} />} />
       </Routes>
       <ModalConnection
-        setOfferId={setOfferId}
         setConnected={setConnected}
         connected={connected}
         cookie={cookie}
