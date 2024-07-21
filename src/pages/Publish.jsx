@@ -68,7 +68,7 @@ const Publish = ({ cookie, getCookie }) => {
               <div className="publish-label-picture" {...getRootProps()}>
                 <input {...getInputProps()} />
                 <p>
-                  <FontAwesomeIcon icon={faPlus} /> Ajout une photo
+                  <FontAwesomeIcon icon={faPlus} /> Ajoute une photo
                 </p>
               </div>
 
