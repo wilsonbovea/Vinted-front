@@ -1,8 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-const Signup = ({ setUserToken, setConnected, userName, setUserName }) => {
+import { useNavigate, NavLink } from "react-router-dom";
+const Signup = ({
+  setUserToken,
+  setConnected,
+  userName,
+  setUserName,
+  toPublish,
+  setToPublish,
+}) => {
   const navigate = useNavigate();
 
   const [userEmail, setUserEmail] = useState("");
@@ -34,8 +41,12 @@ const Signup = ({ setUserToken, setConnected, userName, setUserName }) => {
       console.log(data);
       Cookies.set("userToken", data.token);
       setConnected(true);
-
-      navigate("/");
+      setToPublish(true);
+      if (toPublish) {
+        navigate("/publish");
+      } else {
+        navigate("/");
+      }
     } catch (error) {
       console.log("Offer page - catch >", error.response);
 
@@ -112,9 +123,9 @@ const Signup = ({ setUserToken, setConnected, userName, setUserName }) => {
         <button className="signup-button" disabled={isSubmitting}>
           S'inscrire
         </button>
-        <a href="/login" className="to-login">
-          Tu as déja un compte ? Connecte-toi !
-        </a>
+        <NavLink to="/login" className="to-login">
+          <p>Tu as déja un compte ? Connecte-toi !</p>
+        </NavLink>
       </form>
     </main>
   );

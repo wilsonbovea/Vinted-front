@@ -1,5 +1,5 @@
-import { NavLink } from "react-router-dom";
 import Cookies from "js-cookie";
+import { useLocation, useNavigate, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 const ModalConnection = ({
@@ -10,7 +10,10 @@ const ModalConnection = ({
   display,
   setDisplay,
   setUserToken,
+  setToPublish,
 }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
   return (
     <div className={display === 0 ? "hidden-button" : "modal-root"}>
       <div className="modalConnection">
@@ -63,7 +66,9 @@ const ModalConnection = ({
               setUserToken("");
               setCookie("");
               setConnected(false);
-
+              if (location.pathname === "/publish") {
+                navigate("/");
+              }
               window.location.reload();
               setDisplay(0);
             }}
@@ -72,8 +77,14 @@ const ModalConnection = ({
           </button>
         </div>
         <div className="button-sell-div">
-          <NavLink to="/publish">
-            <button className="button-sell" onClick={() => setDisplay(0)}>
+          <NavLink to={cookie ? "/publish" : "/login"}>
+            <button
+              className="button-sell"
+              onClick={() => {
+                setDisplay(0);
+                setToPublish(true);
+              }}
+            >
               Vends tes articles
             </button>
           </NavLink>

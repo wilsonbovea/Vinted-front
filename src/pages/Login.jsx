@@ -1,8 +1,14 @@
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-const Login = ({ setConnected, setUserToken, setUserName }) => {
+import { NavLink, useNavigate } from "react-router-dom";
+const Login = ({
+  setConnected,
+  setUserToken,
+  setUserName,
+  toPublish,
+  setToPublish,
+}) => {
   const navigate = useNavigate();
 
   const [userEmail, setUserEmail] = useState("");
@@ -31,10 +37,13 @@ const Login = ({ setConnected, setUserToken, setUserName }) => {
       setUserName(data.account.username);
 
       setConnected(true);
-
+      setToPublish(true);
       Cookies.set("userToken", data.token);
-
-      navigate("/");
+      if (toPublish) {
+        navigate("/publish");
+      } else {
+        navigate("/");
+      }
     } catch (error) {
       console.log("Offer page - catch >", error.response);
       setErrorMessage("le mot de passe ou l'e-mail sont incorrects");
@@ -77,9 +86,9 @@ const Login = ({ setConnected, setUserToken, setUserName }) => {
         <button className="signup-button" disabled={isSubmitting}>
           S'inscrire
         </button>
-        <a href="/signup" className="to-login">
-          Pas encore de compte ? Inscris-toi !
-        </a>
+        <NavLink to="/signup" className="to-login">
+          <p>Pas encore de compte ? Inscris-toi !</p>
+        </NavLink>
       </form>
     </main>
   );

@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useState } from "react";
 import Slider from "./Slider";
@@ -20,10 +20,12 @@ const Header = ({
   counter,
   setCounter,
   setDisplay,
+
+  setToPublish,
 }) => {
   const [switch1, setSwitch1] = useState(false);
   const location = useLocation();
-
+  const navigate = useNavigate();
   return (
     <header>
       <div
@@ -53,7 +55,7 @@ const Header = ({
           <div className="barre-recherche">
             <input
               className="barre-inp"
-              type="text"
+              type="search"
               placeholder="🔍 Recherche des articles"
               value={search}
               onChange={(event) => {
@@ -124,15 +126,20 @@ const Header = ({
               setUserToken("");
               setCookie("");
               setConnected(false);
-
+              if (location.pathname === "/publish") {
+                navigate("/");
+              }
               window.location.reload();
             }}
           >
             Se déconnecter
           </button>
         </div>
-        <NavLink to="/publish">
-          <button className="button-sell hide-header-button">
+        <NavLink to={cookie ? "/publish" : "/login"}>
+          <button
+            className="button-sell hide-header-button"
+            onClick={() => setToPublish(true)}
+          >
             Vends tes articles
           </button>
         </NavLink>

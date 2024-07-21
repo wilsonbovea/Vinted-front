@@ -72,6 +72,7 @@ header {
   color: white;
   border-radius: 5px;
   width: 115px;
+
   text-align: center;
   padding: 5px;
   font-size: 12px;
@@ -95,7 +96,7 @@ header {
   height: 100%;
 }
 .barre-recherche {
-  width: 620px;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -182,7 +183,8 @@ button {
   font-size: 12px;
   flex-shrink: 0;
 }
-.button-sell {
+.button-sell,
+.button-add-publish {
   background-color: #2db0ba;
   border: none;
   color: white;
@@ -408,6 +410,107 @@ h1 {
   text-align: center;
   text-decoration: none;
 }
+/* PUBLISH PAGE */
+.main-form-pub {
+  background-color: #ecedee;
+  padding: 50px 0px;
+}
+.publish-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.label-picture {
+  padding: 15px;
+  border: #999999 1px solid;
+  background-color: white;
+}
+.label-picture:hover {
+  cursor: pointer;
+}
+.publish-label-picture {
+  display: flex;
+
+  height: 150px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border: 1px #2db0ba dashed;
+}
+.publish-label-picture p {
+  border: #2db0ba solid 2px;
+  height: 60px;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: #2db0ba;
+}
+.label-publish {
+  display: flex;
+  background-color: white;
+  flex-direction: column;
+  border: #999999 solid 1px;
+  padding: 15px;
+  gap: 10px;
+  justify-content: center;
+}
+.label-publish label {
+  display: flex;
+  justify-content: space-between;
+  min-height: 60px;
+  border-bottom: #999999 solid 1px;
+}
+.label-publish input {
+  border: none;
+  border-bottom: #999999 solid 1px;
+  height: 30px;
+  width: 50%;
+}
+.label-publish-prix {
+  display: flex;
+  background-color: white;
+  justify-content: space-between;
+  padding: 15px;
+  border: #999999 1px solid;
+}
+.echange {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  gap: 15px;
+}
+.echange > input {
+  border: none;
+  border-bottom: #999999 1px solid;
+  width: 25%;
+}
+.echange label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.echange > label > input {
+  margin: 0;
+}
+.preview-picture {
+  height: 100px;
+  width: 100px;
+  border: #2db0ba solid 1px;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+.preview-picture img {
+  width: 100%;
+  height: 100%;
+}
+.button-add {
+  display: flex;
+
+  justify-content: flex-end;
+}
+
 @media (max-width: 1022px) {
   .all-offer {
     width: calc((100% - 30px) / 3);

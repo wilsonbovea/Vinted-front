@@ -1,10 +1,10 @@
 import Hero from "../components/Hero";
 import { NavLink } from "react-router-dom";
 
-const HomePage = ({ dataOrg }) => {
+const HomePage = ({ dataOrg, cookie, setToPublish }) => {
   return (
     <>
-      <Hero />
+      <Hero cookie={cookie} setToPublish={setToPublish} />
       <main className="container">
         <section className="section-offers">
           {dataOrg.map((offer, index) => {

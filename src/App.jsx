@@ -22,6 +22,8 @@ function App() {
   const [counter, setCounter] = useState([0, 2000]);
   const [checked, setChecked] = useState("");
   const [display, setDisplay] = useState(0);
+  const [toPublish, setToPublish] = useState(false);
+  console.log(toPublish);
   const getCookie = () => {
     const token = Cookies.get("userToken");
 
@@ -51,7 +53,7 @@ function App() {
     };
     getCookie();
     fetchData();
-  }, [search, counter[0], counter[1], checked]);
+  }, [search, counter[0], counter[1], checked, cookie]);
 
   return isLoading ? (
     <div className="loading loader"></div>
@@ -71,9 +73,20 @@ function App() {
         setCounter={setCounter}
         setChecked={setChecked}
         setDisplay={setDisplay}
+        toPublish={toPublish}
+        setToPublish={setToPublish}
       />
       <Routes>
-        <Route path="/" element={<HomePage dataOrg={dataOrg} />} />
+        <Route
+          path="/"
+          element={
+            <HomePage
+              dataOrg={dataOrg}
+              cookie={cookie}
+              setToPublish={setToPublish}
+            />
+          }
+        />
         <Route path="/offers/:id" element={<OfferPage />} />
         <Route
           path="/signup"
@@ -83,6 +96,8 @@ function App() {
               setUserToken={setUserToken}
               userName={userName}
               setUserName={setUserName}
+              toPublish={toPublish}
+              setToPublish={setToPublish}
             />
           }
         />
@@ -93,10 +108,15 @@ function App() {
               setConnected={setConnected}
               setUserToken={setUserToken}
               setUserName={setUserName}
+              toPublish={toPublish}
+              setToPublish={setToPublish}
             />
           }
         />
-        <Route path="/publish" element={<Publish cookie={cookie} />} />
+        <Route
+          path="/publish"
+          element={<Publish cookie={cookie} getCookie={getCookie} />}
+        />
       </Routes>
       <ModalConnection
         setConnected={setConnected}
@@ -106,6 +126,8 @@ function App() {
         display={display}
         setDisplay={setDisplay}
         setUserToken={setUserToken}
+        toPublish={toPublish}
+        setToPublish={setToPublish}
       />
     </Router>
   );
