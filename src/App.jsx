@@ -131,6 +131,7 @@ function App() {
         setUserToken={setUserToken}
         toPublish={toPublish}
         setToPublish={setToPublish}
+        getCookie={getCookie}
       />
     </Router>
   );

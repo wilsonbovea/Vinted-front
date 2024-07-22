@@ -11,6 +11,7 @@ const ModalConnection = ({
   setDisplay,
   setUserToken,
   setToPublish,
+  getCookie,
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -83,6 +84,7 @@ const ModalConnection = ({
               onClick={() => {
                 setDisplay(0);
                 setToPublish(true);
+                getCookie();
               }}
             >
               Vends tes articles

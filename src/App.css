@@ -142,16 +142,14 @@ button {
   background-color: transparent;
   border: none;
 }
-.desc {
-  background-color: white;
-  border: none;
-  padding-right: 10px;
-}
+.desc,
 .asc {
   background-color: white;
   border: none;
   padding-right: 10px;
+  color: black;
 }
+
 .slider-div {
   width: 100%;
   display: flex;
@@ -573,7 +571,7 @@ h1 {
   }
   .modal {
     display: flex;
-
+    color: black;
     border-radius: 5px;
     align-items: center;
     font-size: 30px;
@@ -581,6 +579,7 @@ h1 {
   .modal:hover {
     background-color: rgba(178, 178, 178, 0.5);
   }
+
   .buttons-connection {
     width: 100%;
     flex-direction: column;
