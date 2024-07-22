@@ -10,7 +10,7 @@ const Hero = ({ cookie, setToPublish }) => {
         <div className="container">
           <div className="hero-start-sell">
             <div className="div-start">
-              <p>prêts à faire du tri dans vos placards ?</p>
+              <p>Prêts à faire du tri dans vos placards ?</p>
               <NavLink to={cookie ? "/publish" : "/login"}>
                 <button
                   className="button-start"

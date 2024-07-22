@@ -4,10 +4,10 @@ import axios from "axios";
 import { nanoid } from "nanoid";
 const OfferPage = () => {
   const { id } = useParams();
-
+  const [imgPrincipal, setImgPrincipal] = useState("");
   const [offer, setOfferInfos] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-
+  console.log("set>>>>", imgPrincipal);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -30,8 +30,35 @@ const OfferPage = () => {
   ) : (
     <section className="section-page-offer">
       <div className="page-offer">
-        <div className="offer-page-img">
-          <img src={offer.product_image.secure_url} alt="" />
+        <div
+          className={
+            offer.product_pictures.length === 1
+              ? "offer-page-img2"
+              : "offer-page-img"
+          }
+        >
+          <img
+            className="img-principal"
+            src={
+              imgPrincipal === ""
+                ? offer.product_image.secure_url
+                : imgPrincipal
+            }
+            alt=""
+          />
+          {offer.product_pictures.length === 1 ? null : (
+            <div className="offer-pictures">
+              {offer.product_pictures.map((picture) => {
+                return (
+                  <img
+                    key={picture.public_id}
+                    src={picture.secure_url}
+                    onClick={() => setImgPrincipal(picture.secure_url)}
+                  />
+                );
+              })}
+            </div>
+          )}
         </div>
         <div className="details">
           <h1>{offer.product_price + " €"}</h1>
