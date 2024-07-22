@@ -23,7 +23,7 @@ function App() {
   const [checked, setChecked] = useState("");
   const [display, setDisplay] = useState(0);
   const [toPublish, setToPublish] = useState(false);
-  console.log(toPublish);
+
   const getCookie = () => {
     const token = Cookies.get("userToken");
 
@@ -34,7 +34,7 @@ function App() {
     const fetchData = async () => {
       try {
         const { data } = await axios.get(
-          "https://lereacteur-vinted-api.herokuapp.com/offers?title=" +
+          "https://site--vinted-backend--7pddggdgmnqf.code.run/offers?title=" +
             search +
             "&priceMin=" +
             counter[0] +
@@ -43,7 +43,7 @@ function App() {
             "&sort=" +
             checked
         );
-
+        console.log(data);
         setDataOrg(data.offers);
       } catch (error) {
         console.log("catch >>>>", error.message);

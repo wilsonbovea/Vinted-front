@@ -12,7 +12,7 @@ const OfferPage = () => {
     const fetchData = async () => {
       try {
         const { data } = await axios.get(
-          "https://lereacteur-vinted-api.herokuapp.com/offer/" + id
+          "https://site--vinted-backend--7pddggdgmnqf.code.run/offer/" + id
         );
 
         setOfferInfos(data);

@@ -36,7 +36,7 @@ const Publish = ({ cookie, getCookie }) => {
       getCookie();
       setIsSubmitting(true);
       const { data } = await axios.post(
-        "https://lereacteur-vinted-api.herokuapp.com/offer/publish",
+        "https://site--vinted-backend--7pddggdgmnqf.code.run/offer/publish",
         formdata,
         {
           headers: {

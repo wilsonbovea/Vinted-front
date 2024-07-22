@@ -8,14 +8,15 @@ const HomePage = ({ dataOrg, cookie, setToPublish }) => {
       <main className="container">
         <section className="section-offers">
           {dataOrg.map((offer, index) => {
-            const avatar = offer.owner.account.avatar;
+            console.log(offer);
+            const avatar = offer.owner.account;
 
             return (
               <div key={offer._id} className="all-offer">
                 <div className="avatar">
                   <img
                     src={
-                      avatar && avatar.secure_url
+                      avatar && avatar.avatar && avatar.secure_url
                         ? avatar.secure_url
                         : "/user-img.png"
                     }
