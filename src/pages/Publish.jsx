@@ -18,7 +18,7 @@ const Publish = ({ cookie, getCookie }) => {
   const [paths, setPaths] = useState([]);
   const [picture, setPicture] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  console.log(titre, prix, picture[0]);
+
   const onSubmit = async (event) => {
     event.preventDefault();
 
@@ -31,7 +31,11 @@ const Publish = ({ cookie, getCookie }) => {
     formdata.append("brand", marque);
     formdata.append("size", taille);
     formdata.append("color", couleur);
-    formdata.append("picture", picture[0]);
+
+    picture.map((file) => {
+      return formdata.append("picture", file);
+    });
+
     try {
       getCookie();
       setIsSubmitting(true);
@@ -41,11 +45,13 @@ const Publish = ({ cookie, getCookie }) => {
         {
           headers: {
             authorization: `Bearer ${cookie}`,
+            "Content-Type": "multipart/form-data",
           },
         }
       );
 
       navigate("/");
+      window.location.reload();
     } catch (error) {
       console.log("catch >>>>", error.response);
     }
@@ -60,6 +66,7 @@ const Publish = ({ cookie, getCookie }) => {
         <Dropzone
           onDrop={(acceptedFiles) => {
             setPicture(acceptedFiles);
+            console.log(picture);
             setPaths(acceptedFiles.map((file) => URL.createObjectURL(file)));
           }}
         >
@@ -71,14 +78,15 @@ const Publish = ({ cookie, getCookie }) => {
                   <FontAwesomeIcon icon={faPlus} /> Ajoute une photo
                 </p>
               </div>
-
-              {paths.map((path) => {
-                return (
-                  <div key={path} className="preview-picture">
-                    <img src={path} />
-                  </div>
-                );
-              })}
+              <div className="preview">
+                {paths.map((path) => {
+                  return (
+                    <div key={path} className="preview-picture">
+                      <img src={path} />
+                    </div>
+                  );
+                })}{" "}
+              </div>
             </section>
           )}
         </Dropzone>

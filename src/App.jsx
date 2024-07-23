@@ -43,7 +43,7 @@ function App() {
             "&sort=" +
             checked
         );
-        console.log(data);
+
         setDataOrg(data.offers);
       } catch (error) {
         console.log("catch >>>>", error.message);

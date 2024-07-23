@@ -283,14 +283,21 @@ button {
   margin-bottom: 30px;
   display: flex;
   width: 248px;
-
+  box-shadow: 0px 0px 3px lightgray;
   gap: 10px;
   color: black;
   flex-direction: column;
+  padding: 5px;
+}
+.all-offer:hover {
+  box-shadow: 0px 0px 6px lightgray;
 }
 .nav-offer {
   text-decoration: none;
   color: black;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .all-offer span {
   color: #999999;
@@ -324,14 +331,15 @@ button {
   gap: 5px;
   height: 100px;
   overflow: scroll;
-  background-color: white;
 }
 .offer-pictures img {
   height: 100%;
   flex: 1;
+  min-width: 100px;
   object-fit: contain;
   border: #2db0ba 1px solid;
   border-radius: 5px;
+  background-color: white;
 }
 .offer-pictures img:hover {
   cursor: pointer;
@@ -529,12 +537,19 @@ h1 {
 .echange > label > input {
   margin: 0;
 }
+.preview {
+  width: 100%;
+  overflow: scroll;
+  display: flex;
+  gap: 10px;
+}
 .preview-picture {
   height: 100px;
   width: 100px;
   border: #2db0ba solid 1px;
   margin-top: 10px;
   border-radius: 5px;
+  display: flex;
 }
 .preview-picture img {
   width: 100%;

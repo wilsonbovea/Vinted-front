@@ -8,7 +8,7 @@ const HomePage = ({ dataOrg, cookie, setToPublish }) => {
       <main className="container">
         <section className="section-offers">
           {dataOrg.map((offer, index) => {
-            console.log(offer);
+            // console.log(offer);
             const avatar = offer.owner.account;
 
             return (
@@ -29,18 +29,20 @@ const HomePage = ({ dataOrg, cookie, setToPublish }) => {
                   <div className="offer-img">
                     <img src={offer.product_image.secure_url} alt="" />
                   </div>
-                  <p>{offer.product_price + " €"}</p>
-                  <span>
-                    {offer.product_details.map((detail) => {
-                      return detail.TAILLE;
-                    })}
-                  </span>
-                  <br />
-                  <span>
-                    {offer.product_details.map((detail) => {
-                      return detail.MARQUE;
-                    })}
-                  </span>
+                  <div>
+                    <p>{offer.product_price + " €"}</p>
+                    <span>
+                      {offer.product_details.map((detail) => {
+                        return detail.TAILLE;
+                      })}
+                    </span>
+                    <br />
+                    <span>
+                      {offer.product_details.map((detail) => {
+                        return detail.MARQUE;
+                      })}
+                    </span>
+                  </div>
                 </NavLink>
               </div>
             );

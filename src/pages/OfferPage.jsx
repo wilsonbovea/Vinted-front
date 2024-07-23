@@ -7,7 +7,7 @@ const OfferPage = () => {
   const [imgPrincipal, setImgPrincipal] = useState("");
   const [offer, setOfferInfos] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  console.log("set>>>>", imgPrincipal);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -41,7 +41,7 @@ const OfferPage = () => {
             className="img-principal"
             src={
               imgPrincipal === ""
-                ? offer.product_image.secure_url
+                ? offer.product_pictures[0].secure_url
                 : imgPrincipal
             }
             alt=""
