@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { nanoid } from "nanoid";
 const OfferPage = () => {
@@ -96,7 +96,13 @@ const OfferPage = () => {
               <span>{offer.owner.account.username}</span>
             </div>
           </div>
-          <button className="buy-button">Acheter</button>
+          <Link
+            to="/payment"
+            state={{ offerDetails: offer }}
+            className="buy-button"
+          >
+            Acheter
+          </Link>
         </div>
       </div>
     </section>

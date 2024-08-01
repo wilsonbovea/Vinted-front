@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import Cookies from "js-cookie";
 import ModalConnection from "./components/ModalConnection";
 import Publish from "./pages/Publish";
+import Payment from "./pages/Payment";
 
 function App() {
   const [dataOrg, setDataOrg] = useState({});
@@ -120,6 +121,7 @@ function App() {
           path="/publish"
           element={<Publish cookie={cookie} getCookie={getCookie} />}
         />
+        <Route path="/payment" element={<Payment cookie={cookie} />} />
       </Routes>
       <ModalConnection
         setConnected={setConnected}
