@@ -43,7 +43,7 @@ const CheckoutForm = ({ productName, amount, productPrice, getPrice }) => {
         elements,
         clientSecret: response.data.client_secret,
         confirmParams: {
-          return_url: "http://localhost:5173/",
+          return_url: "https://vinted-by-wilson.netlify.app/",
         },
 
         // redirect: "if_required",
