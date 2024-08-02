@@ -23,6 +23,7 @@ const Payment = ({ cookie }) => {
   const getPrice = (price) => {
     const subTotal = Math.round((price + 1.2) * 100);
     const total = (subTotal / 100).toFixed(2);
+
     return total;
   };
   return (
@@ -31,7 +32,7 @@ const Payment = ({ cookie }) => {
         stripe={stripePromise}
         options={{
           mode: "payment",
-          amount: getPrice(product_price) * 100,
+          amount: Number((getPrice(product_price) * 100).toFixed(0)),
           currency: "eur",
         }}
       >

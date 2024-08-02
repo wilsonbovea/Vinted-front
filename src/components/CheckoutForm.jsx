@@ -15,6 +15,8 @@ const CheckoutForm = ({ productName, amount, productPrice, getPrice }) => {
   const [completed, setCompleted] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
+  const amountFixed = (amount * 100).toFixed(0);
+  console.log(amountFixed);
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoading(true);
@@ -32,7 +34,7 @@ const CheckoutForm = ({ productName, amount, productPrice, getPrice }) => {
         "https://site--vinted-backend--7pddggdgmnqf.code.run/payment",
         {
           title: productName,
-          amount: amount,
+          amount: amountFixed,
         }
       );
 
