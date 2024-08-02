@@ -50,7 +50,8 @@ const Header = ({
             <FontAwesomeIcon icon={faBars} />
           </button>
         </div>
-        {location.pathname === "/login" || location.pathname === "/signup" ? (
+
+        {location.pathname !== "/" ? (
           <div className="barre-recherche"></div>
         ) : (
           <div className="barre-recherche">

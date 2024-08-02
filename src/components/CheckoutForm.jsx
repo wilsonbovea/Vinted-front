@@ -63,33 +63,32 @@ const CheckoutForm = ({ productName, amount, productPrice, getPrice }) => {
   return completed ? (
     <p>Félicitations pour votre acquisition ! Paiement effectué !</p>
   ) : (
-    <>
-      <section>
-        <div>
+    <main>
+      <section className="payment container">
+        <div className="payment-details">
           <h2>Commande :</h2>
           <span>{productPrice.toFixed(2)} €</span>
         </div>
-        <div>
+        <div className="payment-details">
           <h2>Frais protection acheteur :</h2>
           <span>0.40 €</span>
         </div>
-        <div>
+        <div className="payment-details">
           <h2>Frais de port :</h2>
           <span>0.80 €</span>
         </div>
-      </section>
-      <section>
-        <div>
+        <div className="payment-details">
           <h2>TOTAL :</h2>
           <span>{getPrice(productPrice)} €</span>
         </div>
+
+        <form onSubmit={handleSubmit} className="pay-form">
+          <PaymentElement className="payment-element" />
+          <button disabled={!stripe || !elements || isLoading}>Pay</button>
+          {errorMessage && <p>{errorMessage}</p>}
+        </form>
       </section>
-      <form onSubmit={handleSubmit}>
-        <PaymentElement />
-        <button disabled={!stripe || !elements || isLoading}>Pay</button>
-        {errorMessage && <p>{errorMessage}</p>}
-      </form>
-    </>
+    </main>
   );
 };
 
