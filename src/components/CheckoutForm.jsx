@@ -14,7 +14,7 @@ const CheckoutForm = ({ productName, amount, productPrice, getPrice }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [completed, setCompleted] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const amountFixed = (amount * 100).toFixed(0);
   console.log(amountFixed);
   const handleSubmit = async (event) => {
@@ -25,11 +25,11 @@ const CheckoutForm = ({ productName, amount, productPrice, getPrice }) => {
     }
     const { error: submitError } = await elements.submit();
     if (submitError) {
-      // Affiche l'erreur en question
       setErrorMessage(submitError.message);
       return;
     }
     try {
+      setIsSubmitting(true);
       const response = await axios.post(
         "https://site--vinted-backend--7pddggdgmnqf.code.run/payment",
         {
@@ -58,6 +58,7 @@ const CheckoutForm = ({ productName, amount, productPrice, getPrice }) => {
     } catch (error) {
       console.log(error.response);
     }
+    setIsSubmitting(false);
   };
 
   return completed ? (
@@ -84,10 +85,17 @@ const CheckoutForm = ({ productName, amount, productPrice, getPrice }) => {
 
         <form onSubmit={handleSubmit} className="pay-form">
           <PaymentElement className="payment-element" />
-          <button disabled={!stripe || !elements || isLoading}>Pay</button>
+          <button disabled={!stripe || !elements || isLoading || isSubmitting}>
+            Pay
+          </button>
           {errorMessage && <p>{errorMessage}</p>}
         </form>
       </section>
+      {isSubmitting && (
+        <section className="absolute">
+          <div className="loading loader"></div>
+        </section>
+      )}
     </main>
   );
 };
