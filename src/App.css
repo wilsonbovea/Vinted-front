@@ -328,17 +328,15 @@ button {
 }
 .offer-page-img2 {
   width: 450px;
-  border-radius: 15px;
+
   height: 600px;
-  overflow: hidden;
 }
 
 .offer-page-img {
   width: 450px;
+
   height: 498px;
   background-color: white;
-  border-radius: 15px;
-  overflow: hidden;
 }
 .offer-pictures {
   display: flex;
