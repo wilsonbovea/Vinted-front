@@ -12,7 +12,7 @@ const CheckoutForm = ({ productName, amount, productPrice, getPrice }) => {
   const elements = useElements();
 
   const [isLoading, setIsLoading] = useState(false);
-  const [completed, setCompleted] = useState(false);
+
   const [errorMessage, setErrorMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const amountFixed = (amount * 100).toFixed(0);
@@ -51,9 +51,7 @@ const CheckoutForm = ({ productName, amount, productPrice, getPrice }) => {
       if (stripeResponse.error) {
         setErrorMessage(stripeResponse.error.message);
       }
-      if (stripeResponse.paymentIntent.status === "succeeded") {
-        setCompleted(true);
-      }
+
       setIsLoading(false);
     } catch (error) {
       console.log(error.response);
@@ -61,9 +59,7 @@ const CheckoutForm = ({ productName, amount, productPrice, getPrice }) => {
     setIsSubmitting(false);
   };
 
-  return completed ? (
-    <p>Félicitations pour votre acquisition ! Paiement effectué !</p>
-  ) : (
+  return (
     <main>
       <section className="payment container">
         <div className="payment-details">
