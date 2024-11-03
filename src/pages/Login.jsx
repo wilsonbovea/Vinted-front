@@ -87,7 +87,7 @@ const Login = ({
         </div>
         <span className="error-message"> {errorMessage}</span>
         <button className="signup-button" type="submit" disabled={isSubmitting}>
-          S'inscrire
+          Se connecter
         </button>
         <NavLink to="/signup" className="to-login">
           <p>Pas encore de compte ? Inscris-toi !</p>
